@@ -34,7 +34,7 @@ services:
       dockerfile: ./docker/fusion.dockerfile
       context: .
     image: fa2c1st/fusion:v1
-    container: fusion1
+    container_name: fusion1
     ports:
       - "8000"
     networks:
@@ -47,7 +47,7 @@ services:
       dockerfile: ./docker/fusion.dockerfile
       context: .
     image: fa2c1st/fusion:v1
-    container: fusion2
+    container_name: fusion2
     ports:
       - "8000"
     networks:
@@ -60,7 +60,7 @@ services:
       dockerfile: ./docker/fusion.dockerfile
       context: .
     image: fa2c1st/fusion:v1
-    container: fusion3
+    container_name: fusion3
     ports:
       - "8000"
     networks:
@@ -69,7 +69,7 @@ services:
       - pgfusion
 
   networks:
-    wnfusion:
+    nwfusion:
       driver: bridge
       
   volumes:
