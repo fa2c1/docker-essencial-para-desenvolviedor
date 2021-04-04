@@ -2,10 +2,10 @@ version: "3.8"
 
 services:
   nginx:
-    build: 
+    build:
       dockerfile: ./docker/nginx.dockerfile
       context: .
-    image: fa2c1st/nginx_fusion:v1
+    image: guniversity/nginx_fusion:v1
     container_name: nginx
     ports:
       - "8080:80"
@@ -15,25 +15,25 @@ services:
       - fusion1
       - fusion2
       - fusion3
-
-  pfusion:
+  
+  pgfusion:
     build:
       dockerfile: ./docker/pgfusion.dockerfile
       context: .
-    image: fa2c1st/pgfusion:v1
+    image: guniversity/pgfusion:v1
     container_name: pgfusion
     ports:
       - "5432"
     networks:
       - nwfusion
     volumes:
-      -pgdata:/var/lib/postgressql/data
-
+      - pgdata:/var/lib/postgresql/data/
+  
   fusion1:
     build:
       dockerfile: ./docker/fusion.dockerfile
       context: .
-    image: fa2c1st/fusion:v1
+    image: guniversity/fusion:v1
     container_name: fusion1
     ports:
       - "8000"
@@ -41,12 +41,12 @@ services:
       - nwfusion
     depends_on:
       - pgfusion
-
+  
   fusion2:
     build:
       dockerfile: ./docker/fusion.dockerfile
       context: .
-    image: fa2c1st/fusion:v1
+    image: guniversity/fusion:v1
     container_name: fusion2
     ports:
       - "8000"
@@ -59,7 +59,7 @@ services:
     build:
       dockerfile: ./docker/fusion.dockerfile
       context: .
-    image: fa2c1st/fusion:v1
+    image: guniversity/fusion:v1
     container_name: fusion3
     ports:
       - "8000"
@@ -68,9 +68,10 @@ services:
     depends_on:
       - pgfusion
 
-  networks:
-    nwfusion:
-      driver: bridge
-      
-  volumes:
-    pgdata:
+networks:
+  nwfusion:
+    driver: bridge
+
+volumes:
+  pgdata:
+ 

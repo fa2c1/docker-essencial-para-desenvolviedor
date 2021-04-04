@@ -1,5 +1,5 @@
-FROM python:3.10.0a6-alpine3.13 
-LABEL maintainer "Fernando Coutinho <ti.fernando.coutinho@gmail.com>"
+FROM python:3.9.0-alpine
+LABEL maintainer "fa2c1st <ti.fernando.coutinho@gmail.com>"
 COPY . /var/www
 WORKDIR /var/www
 RUN apk update && apk add zlib-dev jpeg-dev gcc musl-dev python3-dev postgresql-dev && pip install -r requirements.txt && python manage.py collectstatic --noinput

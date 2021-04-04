@@ -1,5 +1,5 @@
-FROM nginx:1.19.9-alpine
-LABEL maintainer "Fernando Coutinho <ti.fernando.coutinho@gmail.com>"
+FROM nginx:1.19.4-alpine
+LABEL maintainer "fa2c1st <ti.fernando.coutinho@gmail.com>"
 ENV PYTHONUBUFFERED 1
 ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
