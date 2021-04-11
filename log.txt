@@ -1,0 +1,321 @@
+fernando@desktop-linux:~/Documentos/docker/fusion$ docker-compose build
+Building pgfusion
+Sending build context to Docker daemon  30.26MB
+
+Step 1/6 : FROM postgres:13.1-alpine
+ ---> 8c6053d81a45
+Step 2/6 : LABEL maintainer "fa2c1st <ti.fernando.coutinho@gmail.com>"
+ ---> Using cache
+ ---> 68b0cd7154d2
+Step 3/6 : ENV POSTGRES_USER=fusion_user
+ ---> Using cache
+ ---> 0812a13b1706
+Step 4/6 : ENV POSTGRES_PASSWORD=fusion_pass
+ ---> Using cache
+ ---> 85d3c2ac8389
+Step 5/6 : ENV POSTGRES_DB=fusion_app
+ ---> Using cache
+ ---> ad523734de6a
+Step 6/6 : EXPOSE 5432
+ ---> Using cache
+ ---> a8c3a820adbd
+Successfully built a8c3a820adbd
+Successfully tagged fa2c1st/pgfusion:v1
+Building fusion1
+Sending build context to Docker daemon  30.26MB
+
+Step 1/7 : FROM python:3.9.0-alpine
+ ---> c0c46556c6d3
+Step 2/7 : LABEL maintainer "fa2c1st <ti.fernando.coutinho@gmail.com>"
+ ---> Using cache
+ ---> c1de7f10ff7b
+Step 3/7 : COPY . /var/www
+ ---> 464d6ad9516b
+Step 4/7 : WORKDIR /var/www
+ ---> Running in 8619c20f8659
+Removing intermediate container 8619c20f8659
+ ---> 10851e634998
+Step 5/7 : RUN apk update && apk add zlib-dev jpeg-dev gcc musl-dev python3-dev postgresql-dev && pip install -r requirements.txt && python manage.py collectstatic --noinput
+ ---> Running in bd4eab7b3485
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.12/community/x86_64/APKINDEX.tar.gz
+v3.12.6-13-g695dc71caa [http://dl-cdn.alpinelinux.org/alpine/v3.12/main]
+v3.12.6-11-ga80e007739 [http://dl-cdn.alpinelinux.org/alpine/v3.12/community]
+OK: 12760 distinct packages available
+(1/36) Upgrading libcrypto1.1 (1.1.1g-r0 -> 1.1.1k-r0)
+(2/36) Upgrading libssl1.1 (1.1.1g-r0 -> 1.1.1k-r0)
+(3/36) Installing libgcc (9.3.0-r2)
+(4/36) Installing libstdc++ (9.3.0-r2)
+(5/36) Installing binutils (2.34-r1)
+(6/36) Installing gmp (6.2.0-r0)
+(7/36) Installing isl (0.18-r0)
+(8/36) Installing libgomp (9.3.0-r2)
+(9/36) Installing libatomic (9.3.0-r2)
+(10/36) Installing libgphobos (9.3.0-r2)
+(11/36) Installing mpfr4 (4.0.2-r4)
+(12/36) Installing mpc1 (1.1.0-r1)
+(13/36) Installing gcc (9.3.0-r2)
+(14/36) Installing libjpeg-turbo (2.0.5-r0)
+(15/36) Installing pkgconf (1.7.2-r0)
+(16/36) Installing libjpeg-turbo-dev (2.0.5-r0)
+(17/36) Installing jpeg-dev (9d-r0)
+(18/36) Installing musl-dev (1.1.24-r10)
+(19/36) Installing libxml2 (2.9.10-r5)
+(20/36) Installing llvm10-libs (10.0.0-r2)
+(21/36) Installing clang-libs (10.0.0-r2)
+(22/36) Installing clang (10.0.0-r2)
+(23/36) Installing llvm10 (10.0.0-r2)
+(24/36) Installing openssl-dev (1.1.1k-r0)
+(25/36) Installing icu-libs (67.1-r0)
+(26/36) Installing icu (67.1-r0)
+(27/36) Installing icu-dev (67.1-r0)
+(28/36) Installing db (5.3.28-r1)
+(29/36) Installing libsasl (2.1.27-r6)
+(30/36) Installing libldap (2.4.50-r2)
+(31/36) Installing libpq (12.6-r0)
+(32/36) Installing postgresql-libs (12.6-r0)
+(33/36) Installing postgresql-dev (12.6-r0)
+(34/36) Installing python3 (3.8.8-r0)
+(35/36) Installing python3-dev (3.8.8-r0)
+(36/36) Installing zlib-dev (1.2.11-r3)
+Executing busybox-1.31.1-r19.trigger
+Executing ca-certificates-20191127-r4.trigger
+OK: 450 MiB in 70 packages
+Collecting Django==2.2.17
+  Downloading Django-2.2.17-py3-none-any.whl (7.5 MB)
+Collecting django-adminlte2==0.4.1
+  Downloading django_adminlte2-0.4.1-py3-none-any.whl (4.5 MB)
+Collecting django-stdimage==5.0.1
+  Downloading django_stdimage-5.0.1-py2.py3-none-any.whl (14 kB)
+Collecting gunicorn
+  Downloading gunicorn-20.1.0.tar.gz (370 kB)
+Requirement already satisfied: setuptools>=3.0 in /usr/local/lib/python3.9/site-packages (from gunicorn->-r requirements.txt (line 12)) (50.3.2)
+Collecting Pillow==6.1.0
+  Downloading Pillow-6.1.0.tar.gz (33.8 MB)
+Collecting progressbar2==3.43.1
+  Downloading progressbar2-3.43.1-py2.py3-none-any.whl (21 kB)
+Collecting psycopg2
+  Downloading psycopg2-2.8.6.tar.gz (383 kB)
+Collecting python-utils==2.3.0
+  Downloading python_utils-2.3.0-py2.py3-none-any.whl (12 kB)
+Collecting pytz==2019.2
+  Downloading pytz-2019.2-py2.py3-none-any.whl (508 kB)
+Collecting six==1.12.0
+  Downloading six-1.12.0-py2.py3-none-any.whl (10 kB)
+Collecting sqlparse==0.3.0
+  Downloading sqlparse-0.3.0-py2.py3-none-any.whl (39 kB)
+Collecting static3==0.7.0
+  Downloading static3-0.7.0.tar.gz (24 kB)
+Building wheels for collected packages: gunicorn, Pillow, psycopg2, static3
+  Building wheel for gunicorn (setup.py): started
+  Building wheel for gunicorn (setup.py): finished with status 'done'
+  Created wheel for gunicorn: filename=gunicorn-20.1.0-py3-none-any.whl size=78918 sha256=8fd6c7ba881e9325337fe2b8809aaaabb99613ad129cf39c72f8f01ecf74f5b5
+  Stored in directory: /root/.cache/pip/wheels/ee/ca/72/3e9be4033d3993d4d78e2f4accdfcfff6c690921fef5ea0d57
+  Building wheel for Pillow (setup.py): started
+  Building wheel for Pillow (setup.py): finished with status 'done'
+  Created wheel for Pillow: filename=Pillow-6.1.0-cp39-cp39-linux_x86_64.whl size=506478 sha256=10d44073d7c573db2e6bb3cedca789f87e494af22e4e71e2212a5fa47f755456
+  Stored in directory: /root/.cache/pip/wheels/03/64/f4/5ca17eda7a165f340133f70d5054308dc827922d93e14ce1c7
+  Building wheel for psycopg2 (setup.py): started
+  Building wheel for psycopg2 (setup.py): finished with status 'done'
+  Created wheel for psycopg2: filename=psycopg2-2.8.6-cp39-cp39-linux_x86_64.whl size=145560 sha256=adc66a81d83ee5916ac7ceb6acffa87a32375792474729ffbc1ac9b44f0bc081
+  Stored in directory: /root/.cache/pip/wheels/a2/07/10/a9a82e72d50feb8d646acde6a88000bbf2ca0f82e41aea438a
+  Building wheel for static3 (setup.py): started
+  Building wheel for static3 (setup.py): finished with status 'done'
+  Created wheel for static3: filename=static3-0.7.0-py3-none-any.whl size=18607 sha256=69246241e95d0fa6515d5a5c402a87a29b00da4b51aff98472c9383b5e28a3b1
+  Stored in directory: /root/.cache/pip/wheels/67/88/26/362b5f8314043c6241ed324b9f76ddf48328b775923b39590a
+Successfully built gunicorn Pillow psycopg2 static3
+Installing collected packages: six, sqlparse, pytz, python-utils, progressbar2, Pillow, Django, static3, psycopg2, gunicorn, django-stdimage, django-adminlte2
+Successfully installed Django-2.2.17 Pillow-6.1.0 django-adminlte2-0.4.1 django-stdimage-5.0.1 gunicorn-20.1.0 progressbar2-3.43.1 psycopg2-2.8.6 python-utils-2.3.0 pytz-2019.2 six-1.12.0 sqlparse-0.3.0 static3-0.7.0
+WARNING: You are using pip version 20.3.1; however, version 21.0.1 is available.
+You should consider upgrading via the '/usr/local/bin/python -m pip install --upgrade pip' command.
+
+326 static files copied to '/var/www/staticfiles', 59 unmodified.
+Removing intermediate container bd4eab7b3485
+ ---> fb41f64a6983
+Step 6/7 : ENTRYPOINT gunicorn --bind 0.0.0.0:8000 fusion.wsgi
+ ---> Running in b8b33f121f85
+Removing intermediate container b8b33f121f85
+ ---> e57cb759519c
+Step 7/7 : EXPOSE 8000
+ ---> Running in 884c5c3021e3
+Removing intermediate container 884c5c3021e3
+ ---> 0caea2d14e47
+Successfully built 0caea2d14e47
+Successfully tagged fa2c1st/fusion:v1
+Building fusion2
+Sending build context to Docker daemon  30.26MB
+
+Step 1/7 : FROM python:3.9.0-alpine
+ ---> c0c46556c6d3
+Step 2/7 : LABEL maintainer "fa2c1st <ti.fernando.coutinho@gmail.com>"
+ ---> Using cache
+ ---> c1de7f10ff7b
+Step 3/7 : COPY . /var/www
+ ---> Using cache
+ ---> 464d6ad9516b
+Step 4/7 : WORKDIR /var/www
+ ---> Using cache
+ ---> 10851e634998
+Step 5/7 : RUN apk update && apk add zlib-dev jpeg-dev gcc musl-dev python3-dev postgresql-dev && pip install -r requirements.txt && python manage.py collectstatic --noinput
+ ---> Using cache
+ ---> fb41f64a6983
+Step 6/7 : ENTRYPOINT gunicorn --bind 0.0.0.0:8000 fusion.wsgi
+ ---> Using cache
+ ---> e57cb759519c
+Step 7/7 : EXPOSE 8000
+ ---> Using cache
+ ---> 0caea2d14e47
+Successfully built 0caea2d14e47
+Successfully tagged fa2c1st/fusion:v1
+Building fusion3
+Sending build context to Docker daemon  30.26MB
+
+Step 1/7 : FROM python:3.9.0-alpine
+ ---> c0c46556c6d3
+Step 2/7 : LABEL maintainer "fa2c1st <ti.fernando.coutinho@gmail.com>"
+ ---> Using cache
+ ---> c1de7f10ff7b
+Step 3/7 : COPY . /var/www
+ ---> Using cache
+ ---> 464d6ad9516b
+Step 4/7 : WORKDIR /var/www
+ ---> Using cache
+ ---> 10851e634998
+Step 5/7 : RUN apk update && apk add zlib-dev jpeg-dev gcc musl-dev python3-dev postgresql-dev && pip install -r requirements.txt && python manage.py collectstatic --noinput
+ ---> Using cache
+ ---> fb41f64a6983
+Step 6/7 : ENTRYPOINT gunicorn --bind 0.0.0.0:8000 fusion.wsgi
+ ---> Using cache
+ ---> e57cb759519c
+Step 7/7 : EXPOSE 8000
+ ---> Using cache
+ ---> 0caea2d14e47
+Successfully built 0caea2d14e47
+Successfully tagged fa2c1st/fusion:v1
+Building nginx
+Sending build context to Docker daemon  30.26MB
+
+Step 1/10 : FROM nginx:1.19.4-alpine
+ ---> e5dcd7aa4b5e
+Step 2/10 : LABEL maintainer "fa2c1st <ti.fernando.coutinho@gmail.com>"
+ ---> Using cache
+ ---> adf23bd38ecf
+Step 3/10 : ENV PYTHONUBUFFERED 1
+ ---> Using cache
+ ---> 34f4e9e8eb5e
+Step 4/10 : ENV LANG C.UTF-8
+ ---> Using cache
+ ---> 18b65366f276
+Step 5/10 : ENV DEBIAN_FRONTEND=noninteractive
+ ---> Using cache
+ ---> 402112148dc0
+Step 6/10 : COPY /docker/config/nginx.conf /etc/nginx/nginx.conf
+ ---> Using cache
+ ---> 8ccddac51fae
+Step 7/10 : COPY . /var/www
+ ---> b3e516ed119a
+Step 8/10 : EXPOSE 80 443
+ ---> Running in 43062fe021ca
+Removing intermediate container 43062fe021ca
+ ---> e3e23a1ffd11
+Step 9/10 : ENTRYPOINT ["nginx"]
+ ---> Running in d8c73ba4e3ce
+Removing intermediate container d8c73ba4e3ce
+ ---> 3dab94eab292
+Step 10/10 : CMD ["-g", "daemon off;"]
+ ---> Running in bd7375281e31
+Removing intermediate container bd7375281e31
+ ---> 9fd366b4e43f
+Successfully built 9fd366b4e43f
+Successfully tagged fa2c1st/nginx_fusion:v1
+fernando@desktop-linux:~/Documentos/docker/fusion$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+fernando@desktop-linux:~/Documentos/docker/fusion$ docker image ls
+REPOSITORY                    TAG                   IMAGE ID       CREATED         SIZE
+fa2c1st/nginx_fusion          v1                    9fd366b4e43f   2 minutes ago   51MB
+fa2c1st/fusion                v1                    0caea2d14e47   2 minutes ago   625MB
+<none>                        <none>                cef5087209bd   6 days ago      51MB
+<none>                        <none>                e99a868ce099   6 days ago      625MB
+<none>                        <none>                00ac88e72638   6 days ago      75.5MB
+fa2c1st/pgfusion              v1                    a8c3a820adbd   6 days ago      159MB
+python                        3.10.0a6-alpine3.13   06fa2c73b615   8 days ago      44.9MB
+postgres                      13.2-alpine           33019398e2df   9 days ago      160MB
+nginx                         1.19.9-alpine         72ab4137bd85   9 days ago      22.6MB
+httpd                         2.4.46-alpine         fa848876521a   9 days ago      54.7MB
+mysql                         8.0.23                e646c6533b0b   11 days ago     546MB
+mariadb                       10.5.9-focal          1138596852f3   2 weeks ago     401MB
+postgres                      13.1-alpine           8c6053d81a45   2 months ago    159MB
+python                        3.9.0-alpine          c0c46556c6d3   4 months ago    46.2MB
+nginx                         1.19.4-alpine         e5dcd7aa4b5e   5 months ago    21.8MB
+gcr.io/k8s-minikube/kicbase   v0.0.13               90f1294ff9ac   6 months ago    800MB
+nouchka/sqlite3               latest                ac9ab28bb24c   9 months ago    74.3MB
+fernando@desktop-linux:~/Documentos/docker/fusion$ docker-compose up -d
+Creating network "fusion_nwfusion" with driver "bridge"
+Creating volume "fusion_pgdata" with default driver
+Creating pgfusion ... done
+Creating fusion1  ... done
+Creating fusion3  ... done
+Creating fusion2  ... done
+Creating nginx    ... done
+fernando@desktop-linux:~/Documentos/docker/fusion$ docker ps
+CONTAINER ID   IMAGE                     COMMAND                  CREATED          STATUS          PORTS                           NAMES
+23059d96d670   fa2c1st/nginx_fusion:v1   "nginx -g 'daemon of…"   27 seconds ago   Up 25 seconds   443/tcp, 0.0.0.0:8080->80/tcp   nginx
+2344999dc835   fa2c1st/fusion:v1         "/bin/sh -c 'gunicor…"   29 seconds ago   Up 27 seconds   0.0.0.0:49155->8000/tcp         fusion2
+9ead7db0173d   fa2c1st/fusion:v1         "/bin/sh -c 'gunicor…"   29 seconds ago   Up 27 seconds   0.0.0.0:49154->8000/tcp         fusion3
+2510f2ca5f44   fa2c1st/fusion:v1         "/bin/sh -c 'gunicor…"   29 seconds ago   Up 27 seconds   0.0.0.0:49156->8000/tcp         fusion1
+00b51f4d12c0   fa2c1st/pgfusion:v1       "docker-entrypoint.s…"   30 seconds ago   Up 29 seconds   0.0.0.0:49153->5432/tcp         pgfusion
+fernando@desktop-linux:~/Documentos/docker/fusion$ docker exec -ip fusion1 python manage -ps migrate
+unknown shorthand flag: 'p' in -p
+See 'docker exec --help'.
+fernando@desktop-linux:~/Documentos/docker/fusion$ docker exec -ip fusion1 python manage -py migrate
+unknown shorthand flag: 'p' in -p
+See 'docker exec --help'.
+fernando@desktop-linux:~/Documentos/docker/fusion$ docker exec -ip fusion1 python manage.py migrate
+unknown shorthand flag: 'p' in -p
+See 'docker exec --help'.
+fernando@desktop-linux:~/Documentos/docker/fusion$ docker exec -it fusion1 python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, core, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying core.0001_initial... OK
+  Applying sessions.0001_initial... OK
+fernando@desktop-linux:~/Documentos/docker/fusion$ docker ps
+CONTAINER ID   IMAGE                     COMMAND                  CREATED         STATUS         PORTS                           NAMES
+23059d96d670   fa2c1st/nginx_fusion:v1   "nginx -g 'daemon of…"   6 minutes ago   Up 6 minutes   443/tcp, 0.0.0.0:8080->80/tcp   nginx
+2344999dc835   fa2c1st/fusion:v1         "/bin/sh -c 'gunicor…"   6 minutes ago   Up 6 minutes   0.0.0.0:49155->8000/tcp         fusion2
+9ead7db0173d   fa2c1st/fusion:v1         "/bin/sh -c 'gunicor…"   6 minutes ago   Up 6 minutes   0.0.0.0:49154->8000/tcp         fusion3
+2510f2ca5f44   fa2c1st/fusion:v1         "/bin/sh -c 'gunicor…"   6 minutes ago   Up 6 minutes   0.0.0.0:49156->8000/tcp         fusion1
+00b51f4d12c0   fa2c1st/pgfusion:v1       "docker-entrypoint.s…"   6 minutes ago   Up 6 minutes   0.0.0.0:49153->5432/tcp         pgfusion
+fernando@desktop-linux:~/Documentos/docker/fusion$ docker-compose down
+Stopping nginx    ... done
+Stopping fusion2  ... done
+Stopping fusion3  ... done
+Stopping fusion1  ... done
+Stopping pgfusion ... done
+Removing nginx    ... done
+Removing fusion2  ... done
+Removing fusion3  ... done
+Removing fusion1  ... done
+Removing pgfusion ... done
+Removing network fusion_nwfusion
+fernando@desktop-linux:~/Documentos/docker/fusion$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+fernando@desktop-linux:~/Documentos/docker/fusion$ docker ps -a
+CONTAINER ID   IMAGE                                 COMMAND                  CREATED      STATUS                    PORTS     NAMES
+3149c2ce915c   gcr.io/k8s-minikube/kicbase:v0.0.13   "/usr/local/bin/entr…"   7 days ago   Exited (137) 7 days ago             minikube

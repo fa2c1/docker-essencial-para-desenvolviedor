@@ -5,7 +5,7 @@ services:
     build:
       dockerfile: ./docker/nginx.dockerfile
       context: .
-    image: guniversity/nginx_fusion:v1
+    image: fa2c1st/nginx_fusion:v1
     container_name: nginx
     ports:
       - "8080:80"
@@ -20,7 +20,7 @@ services:
     build:
       dockerfile: ./docker/pgfusion.dockerfile
       context: .
-    image: guniversity/pgfusion:v1
+    image: fa2c1st/pgfusion:v1
     container_name: pgfusion
     ports:
       - "5432"
@@ -33,7 +33,7 @@ services:
     build:
       dockerfile: ./docker/fusion.dockerfile
       context: .
-    image: guniversity/fusion:v1
+    image: fa2c1st/fusion:v1
     container_name: fusion1
     ports:
       - "8000"
@@ -46,7 +46,7 @@ services:
     build:
       dockerfile: ./docker/fusion.dockerfile
       context: .
-    image: guniversity/fusion:v1
+    image: fa2c1st/fusion:v1
     container_name: fusion2
     ports:
       - "8000"
@@ -59,7 +59,7 @@ services:
     build:
       dockerfile: ./docker/fusion.dockerfile
       context: .
-    image: guniversity/fusion:v1
+    image: fa2c1st/fusion:v1
     container_name: fusion3
     ports:
       - "8000"
