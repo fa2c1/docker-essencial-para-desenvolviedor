@@ -49,7 +49,7 @@ services:
     image: fa2c1st/fusion:v1
     container_name: fusion2
     ports:
-      - "8000"
+      - "80:80"
     networks:
       - nwfusion
     depends_on:
